@@ -1,0 +1,46 @@
+card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                }, 200 * index);
+            });
+            
+            // Option selection in competition
+            const optionBtns = document.querySelectorAll('.option-btn');
+            optionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove selection from all options
+                    optionBtns.forEach(b => {
+                        b.classList.remove('correct', 'incorrect');
+                    });
+                    
+                    // Add appropriate class to clicked option
+                    if (this.textContent.includes('医生') || 
+                        this.textContent.includes('水') || 
+                        this.textContent.includes('机场') ||
+                        this.textContent.includes('老板')) {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('incorrect');
+                    }
+                });
+            });
+            
+            // Timer simulation
+            let minutes = 5;
+            let seconds = 0;
+            const timerElement = document.querySelector('.competition-timer');
+            
+            setInterval(() => {
+                if (seconds === 0) {
+                    if (minutes === 0) return;
+                    minutes--;
+                    seconds = 59;
+                } else {
+                    seconds--;
+                }
+                
+                timerElement.innerHTML = <i class="fas fa-clock"></i> ពេលវេលានៅសល់: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
